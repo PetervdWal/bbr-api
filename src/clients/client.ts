@@ -1,30 +1,35 @@
-import {Server} from '../types';
-
+import { Server } from '../types';
 
 export class BBRClient {
-    #baseUrl = 'https://publicapi.battlebit.cloud/'
-    
-    constructor(baseUrl?: string) {
-        if(baseUrl){
-            this.#baseUrl = baseUrl
-        }
+  #baseUrl = 'https://publicapi.battlebit.cloud/';
+
+  constructor(baseUrl?: string) {
+    if (baseUrl) {
+      this.#baseUrl = baseUrl;
     }
-    
-    async getServers(): Promise<Server[]> {
-        const url = `${this.#baseUrl}Servers/GetServerList`;
-        let response: Response
-        try{
-            response = await fetch(url, {
-                method: 'GET'
-            });
-        }catch (e: unknown){
-            console.error('something off', e);
-            throw new Error();
-        }
-        
-        if(response.status == 200){
-            return response.json();    
-        }
-        throw new Error();
+  }
+
+  /**
+   * Returns a list all known (and whitelisted) servers to BattleBit.
+   */
+  async getServers(): Promise<Server[] | undefined> {
+    const url = `${this.#baseUrl}Servers/GetServerList`;
+    let response: Response;
+    try {
+      response = await fetch(url, {
+        method: 'GET',
+      });
+    } catch (error: unknown) {
+      console.error(
+        'There has been a problem with your fetch operation:',
+        error
+      );
+      //rethrow
+      throw error
     }
+
+    if (response.ok) {
+      return response.json();
+    }
+  }
 }
