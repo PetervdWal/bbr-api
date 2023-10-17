@@ -1,8 +1,10 @@
 # BattleBitRemastered-Api
 This wrapper contains easy-to-use access to BattleBits public api.
 
-## Table of Contents
+Currently suppported methods:
+- Servers/GetServerList
 
+## Table of Contents
 - [Getting Started](#getting-started)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
