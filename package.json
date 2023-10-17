@@ -5,6 +5,7 @@
   "version": "1.0.4",
   "dependencies": {
     "@types/node": "^20.8.3",
+    "battlebit-remastered-ts-api": "^1.0.0",
     "ts-node": "^10.9.1"
   },
   "devDependencies": {
@@ -18,7 +19,9 @@
     "serve": "ts-node ./src/main.ts",
     "build": "npm i && rm -rf dist && tsc"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "license": "MIT"
