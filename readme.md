@@ -43,6 +43,6 @@ Found any bugs? Please create a ticket in the Issues section
 Want to add an improvement? Please create a pull request with a proper description of what changed and why.
 
 ## License
-The source code for this wrapper is licensed under the MIT license, which you can find in the MIT-LICENSE.txt file.
+The source code for this wrapper is licensed under the MIT license, which you can find in the [MIT-LICENSE.txt](/mit-license.txt) file.
 
 
