@@ -3,6 +3,7 @@ This wrapper contains easy-to-use access to BattleBits public api.
 
 Currently suppported methods:
 - Servers/GetServerList
+- Leaderboard/Get
 
 ## Table of Contents
 - [Getting Started](#getting-started)
@@ -40,9 +41,9 @@ const servers: Servers = await client.getServers();
 
 
 ## Contributing
-Found any bugs? Please create a ticket in the Issues section
+Found any bugs? Please create a ticket in the Issues section: [Issue-tracker-github](https://github.com/PetervdWal/bbr-api/issues)
 
-Want to add an improvement? Please create a pull request with a proper description of what changed and why.
+Want to add an improvement? Please create a pull request with a proper description of what changed and why: [Pull-Requests-github]()
 
 ## License
 The source code for this wrapper is licensed under the MIT license, which you can find in the [MIT-LICENSE.txt](/mit-license.txt) file.
