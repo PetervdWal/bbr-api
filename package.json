@@ -20,5 +20,6 @@
   },
   "files": ["dist"],
   "main": "./dist/index.js",
-  "types": "./dist/index.d.ts"
+  "types": "./dist/index.d.ts",
+  "license": "MIT"
 }
