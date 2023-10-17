@@ -2,7 +2,7 @@
   "name": "battlebit-remastered-ts-api",
   "author": "Peter van der Wal",
   "private": false,
-  "version": "1.0.3",
+  "version": "1.0.4",
   "dependencies": {
     "@types/node": "^20.8.3",
     "ts-node": "^10.9.1"
