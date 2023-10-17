@@ -2,7 +2,7 @@
   "name": "battlebit-remastered-ts-api",
   "author": "Peter van der Wal",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.0.2",
   "dependencies": {
     "@types/node": "^20.8.3",
     "ts-node": "^10.9.1"
@@ -16,6 +16,9 @@
   "scripts": {
     "test": "jest",
     "serve": "ts-node ./src/main.ts",
-    "build": "tsc"
-  }
+    "build": "npm i && rm -rf dist && tsc"
+  },
+  "files": ["dist"],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts"
 }
