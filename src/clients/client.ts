@@ -70,7 +70,7 @@ export class BBRClient {
         ),
         MostVehicleRepairs: mapLeaderBoardObjectToRankingArray(
           jsonResult,
-          ' MostVehicleRepairs'
+          'MostVehicleRepairs'
         ),
         MostXP: mapLeaderBoardObjectToRankingArray(jsonResult, 'MostXP'),
         TopClans: mapLeaderBoardObjectToRankingArray(jsonResult, 'TopClans'),
