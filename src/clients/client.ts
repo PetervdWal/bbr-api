@@ -1,7 +1,8 @@
-import { Server } from '../types';
+import { LeaderBoard, Server } from '../types';
+import { mapLeaderBoardObjectToRankingArray } from './utils';
 
 export class BBRClient {
-  #baseUrl = 'https://publicapi.battlebit.cloud/';
+  readonly #baseUrl: string = 'https://publicapi.battlebit.cloud/';
 
   constructor(baseUrl?: string) {
     if (baseUrl) {
@@ -9,14 +10,9 @@ export class BBRClient {
     }
   }
 
-  /**
-   * Returns a list all known (and whitelisted) servers to BattleBit.
-   */
-  async getServers(): Promise<Server[] | undefined> {
-    const url = `${this.#baseUrl}Servers/GetServerList`;
-    let response: Response;
+  async #callGet(url: string): Promise<Response> {
     try {
-      response = await fetch(url, {
+      return await fetch(url, {
         method: 'GET',
       });
     } catch (error: unknown) {
@@ -25,11 +21,60 @@ export class BBRClient {
         error
       );
       //rethrow
-      throw error
+      throw error;
     }
+  }
+
+  /**
+   * Returns a list all known (and whitelisted) servers to BattleBit.
+   */
+  async getServers(): Promise<Server[] | undefined> {
+    const url = `${this.#baseUrl}Servers/GetServerList`;
+
+    const response = await this.#callGet(url);
 
     if (response.ok) {
       return response.json();
+    }
+  }
+
+  /**
+   * Returns the current leaderboard
+   * Unpacks the leaderboard response into a more usable response
+   */
+  async getLeaderBoard(): Promise<LeaderBoard | undefined> {
+    const url = `${this.#baseUrl}Leaderboard/Get`;
+    const response = await this.#callGet(url);
+
+    if (response.ok) {
+      const jsonResult = await response.json();
+
+      return {
+        MostHeals: mapLeaderBoardObjectToRankingArray(jsonResult, 'MostHeals'),
+        MostKills: mapLeaderBoardObjectToRankingArray(jsonResult, 'MostKills'),
+        MostLongestKill: mapLeaderBoardObjectToRankingArray(
+          jsonResult,
+          'MostLongestKill'
+        ),
+        MostRevives: mapLeaderBoardObjectToRankingArray(
+          jsonResult,
+          'MostRevives'
+        ),
+        MostRoadkills: mapLeaderBoardObjectToRankingArray(
+          jsonResult,
+          'MostRoadkills'
+        ),
+        MostVehiclesDestroyed: mapLeaderBoardObjectToRankingArray(
+          jsonResult,
+          'MostVehiclesDestroyed'
+        ),
+        MostVehicleRepairs: mapLeaderBoardObjectToRankingArray(
+          jsonResult,
+          ' MostVehicleRepairs'
+        ),
+        MostXP: mapLeaderBoardObjectToRankingArray(jsonResult, 'MostXP'),
+        TopClans: mapLeaderBoardObjectToRankingArray(jsonResult, 'TopClans'),
+      };
     }
   }
 }
